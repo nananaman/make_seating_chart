@@ -2,6 +2,10 @@
 
 生徒リストと座席の情報からランダムな座席表を作成するツール
 
+* サンプル
+
+![DEMO](https://github.com/nananaman/make_seating_chart/blob/master/seating_chart.png)
+
 ## Installation
 
 ```

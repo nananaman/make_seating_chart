@@ -236,6 +236,7 @@ def main():
     parser.add_argument('-p', '--podium_name')
     parser.add_argument('--list_pass')
     parser.add_argument('--seats_pass')
+    parser.add_argument('-o', '--out_dir')
     parser.add_argument("--sort", help="how to solve", type=str)
     args=parser.parse_args()
 
@@ -259,21 +260,25 @@ def main():
 
     INFO['SIZE']=[int(INFO['A4'][0] * INFO['DPI']),
                     int(INFO['A4'][1] * INFO['DPI'])]
-    # print(INFO['SIZE'])
     stnum=len(stlist)
     seats_pass=args.seats_pass if args.seats_pass is not None else 'seats.txt'
     seats=make_seats(seats_pass)
     seatsnum=sum([sum(s) for s in seats])
 
+    out_pass = args.out_dir + '/' if args.out_dir is not None else ''
+    out_pass += 'seating_chart.png'
+
     print('Title : {0}'.format(args.title))
     print('A Number of Students : {0}'.format(stnum))
     print('A Number of Seats : {0}'.format(seatsnum))
+    print('A List of Students : {0}'.format(list_pass))
+    print('An Infomation of Seats : {0}'.format(seats_pass))
+    print('Out : {0}'.format(out_pass))
 
     if args.sort == 'center':
         chart=make_seating_chart_center(stlist, seats, shuffle=True)
     else:
         chart=make_seating_chart_front(stlist, seats, shuffle=True)
-    # print(chart)
 
     # スケーリング
     chart_im=make_seats_pic(seats, INFO)
@@ -299,7 +304,7 @@ def main():
     out[l:r, t:b]=chart_im
     im_show(out, int(INFO['scale']))
     # print(out.shape)
-    cv2.imwrite('seating_chart.png', out)
+    cv2.imwrite(out_pass, out)
 
 
 if __name__ == '__main__':
