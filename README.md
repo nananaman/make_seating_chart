@@ -4,7 +4,7 @@
 
 * サンプル
 
-![DEMO](https://github.com/nananaman/make_seating_chart/blob/master/seating_chart.png)
+![DEMO](https://github.com/nananaman/make_seating_chart/blob/master/sample/seating_chart.png)
 
 ## Installation
 
